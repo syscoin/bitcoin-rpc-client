@@ -1,5 +1,5 @@
-/*
- * BitcoindRpcClient-JSON-RPC-Client License
+﻿/*
+ * SyscoindRpcClient-JSON-RPC-Client License
  * 
  * Copyright (c) 2013, Mikhail Yevchenko.
  * 
@@ -16,15 +16,15 @@
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package wf.bitcoin.javabitcoindrpcclient;
+package wf.syscoin.javasyscoindrpcclient;
 
 /**
  *
  * @author Mikhail Yevchenko: m.ṥῥẚɱ.ѓѐḿởύḙ@azazar.com
  */
-public interface BitcoinPaymentListener {
+public interface SyscoinPaymentListener {
 
     public void block(String blockHash);
-    public void transaction(BitcoindRpcClient.Transaction transaction);
+    public void transaction(SyscoindRpcClient.Transaction transaction);
 
 }

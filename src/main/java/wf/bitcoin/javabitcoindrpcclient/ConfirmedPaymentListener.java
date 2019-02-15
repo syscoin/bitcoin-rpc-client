@@ -1,18 +1,18 @@
-/*
+﻿/*
  * Copyright (c) 2013, Mikhail Yevchenko. All rights reserved. PROPRIETARY/CONFIDENTIAL.
  */
-package wf.bitcoin.javabitcoindrpcclient;
+package wf.syscoin.javasyscoindrpcclient;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import wf.bitcoin.javabitcoindrpcclient.BitcoindRpcClient.Transaction;
+import wf.syscoin.javasyscoindrpcclient.SyscoindRpcClient.Transaction;
 
 /**
  *
  * @author Mikhail Yevchenko m.ṥῥẚɱ.ѓѐḿởύḙ@azazar.com
  */
-public abstract class ConfirmedPaymentListener extends SimpleBitcoinPaymentListener {
+public abstract class ConfirmedPaymentListener extends SimpleSyscoinPaymentListener {
 
     public int minConf;
 

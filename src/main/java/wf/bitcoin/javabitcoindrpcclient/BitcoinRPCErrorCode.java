@@ -1,5 +1,5 @@
-/*
- * Bitcoin-JSON-RPC-Client License
+﻿/*
+ * Syscoin-JSON-RPC-Client License
  * 
  * Copyright (c) 2013, Mikhail Yevchenko.
  * 
@@ -15,14 +15,14 @@
  * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package wf.bitcoin.javabitcoindrpcclient;
+package wf.syscoin.javasyscoindrpcclient;
 
 /**
- * error code returned from bitcoind
+ * error code returned from syscoind
  * @author frankchen
  * @create 2018年7月9日 下午8:58:52
  */
-public class BitcoinRPCErrorCode {
+public class SyscoinRPCErrorCode {
     public static final int RPC_MISC_ERROR                  = -1 ;  //!< std::exception thrown in command handling
     public static final int RPC_FORBIDDEN_BY_SAFE_MODE      = -2 ;  //!< Server is in safe mode, and command is not allowed in safe mode
     public static final int RPC_TYPE_ERROR                  = -3 ;  //!< Unexpected type was passed as parameter

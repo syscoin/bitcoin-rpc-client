@@ -1,4 +1,4 @@
-/*
+﻿/*
  * KrotJSON License
  * 
  * Copyright (c) 2013, Mikhail Yevchenko.
@@ -16,7 +16,7 @@
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package wf.bitcoin.krotjson;
+package wf.syscoin.krotjson;
 
 import java.util.Date;
 import java.util.Map;

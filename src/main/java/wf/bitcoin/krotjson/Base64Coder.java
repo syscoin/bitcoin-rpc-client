@@ -1,4 +1,4 @@
-// Copyright 2003-2010 Christian d'Heureuse, Inventec Informatik AG, Zurich, Switzerland
+﻿// Copyright 2003-2010 Christian d'Heureuse, Inventec Informatik AG, Zurich, Switzerland
 // www.source-code.biz, www.inventec.ch/chdh
 //
 // This module is multi-licensed and may be used under the terms
@@ -14,7 +14,7 @@
 // Please contact the author if you need another license.
 // This module is provided "as is", without warranties of any kind.
 
-package wf.bitcoin.krotjson;
+package wf.syscoin.krotjson;
 
 /**
 * A Base64 encoder/decoder.

@@ -1,5 +1,5 @@
-/*
- * BitcoindRpcClient-JSON-RPC-Client License
+﻿/*
+ * SyscoindRpcClient-JSON-RPC-Client License
  * 
  * Copyright (c) 2013, Mikhail Yevchenko.
  * 
@@ -18,7 +18,7 @@
  /*
  * Repackaged with simple additions for easier maven usage by Alessandro Polverini
  */
-package wf.bitcoin.javabitcoindrpcclient;
+package wf.syscoin.javasyscoindrpcclient;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -49,18 +49,18 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSocketFactory;
 
-import wf.bitcoin.krotjson.Base64Coder;
-import wf.bitcoin.krotjson.HexCoder;
-import wf.bitcoin.krotjson.JSON;
+import wf.syscoin.krotjson.Base64Coder;
+import wf.syscoin.krotjson.HexCoder;
+import wf.syscoin.krotjson.JSON;
 
 /**
  *
  * @author Mikhail Yevchenko m.ṥῥẚɱ.ѓѐḿởύḙ at azazar.com Small modifications by
  * Alessandro Polverini polverini at gmail.com
  */
-public class BitcoinJSONRPCClient implements BitcoindRpcClient {
+public class SyscoinJSONRPCClient implements SyscoindRpcClient {
 
-  private static final Logger logger = Logger.getLogger(BitcoindRpcClient.class.getPackage().getName());
+  private static final Logger logger = Logger.getLogger(SyscoindRpcClient.class.getPackage().getName());
 
   public static final URL DEFAULT_JSONRPC_URL;
   public static final URL DEFAULT_JSONRPC_TESTNET_URL;
@@ -78,14 +78,14 @@ public class BitcoinJSONRPCClient implements BitcoindRpcClient {
       File f;
       File home = new File(System.getProperty("user.home"));
 
-      if ((f = new File(home, ".bitcoin" + File.separatorChar + "bitcoin.conf")).exists()) {
-      } else if ((f = new File(home, "AppData" + File.separatorChar + "Roaming" + File.separatorChar + "Bitcoin" + File.separatorChar + "bitcoin.conf")).exists()) {
+      if ((f = new File(home, ".syscoin" + File.separatorChar + "syscoin.conf")).exists()) {
+      } else if ((f = new File(home, "AppData" + File.separatorChar + "Roaming" + File.separatorChar + "Syscoin" + File.separatorChar + "syscoin.conf")).exists()) {
       } else {
         f = null;
       }
 
       if (f != null) {
-        logger.fine("Bitcoin configuration file found");
+        logger.fine("Syscoin configuration file found");
 
         Properties p = new Properties();
         try (FileInputStream i = new FileInputStream(f)) {
@@ -117,11 +117,11 @@ public class BitcoinJSONRPCClient implements BitcoindRpcClient {
   private URL noAuthURL;
   private String authStr;
 
-  public BitcoinJSONRPCClient(String rpcUrl) throws MalformedURLException {
+  public SyscoinJSONRPCClient(String rpcUrl) throws MalformedURLException {
     this(new URL(rpcUrl));
   }
 
-  public BitcoinJSONRPCClient(URL rpc) {
+  public SyscoinJSONRPCClient(URL rpc) {
     this.rpcURL = rpc;
     try {
       noAuthURL = new URI(rpc.getProtocol(), null, rpc.getHost(), rpc.getPort(), rpc.getPath(), rpc.getQuery(), null).toURL();
@@ -131,11 +131,11 @@ public class BitcoinJSONRPCClient implements BitcoindRpcClient {
     authStr = rpc.getUserInfo() == null ? null : String.valueOf(Base64Coder.encode(rpc.getUserInfo().getBytes(Charset.forName("ISO8859-1"))));
   }
 
-  public BitcoinJSONRPCClient(boolean testNet) {
+  public SyscoinJSONRPCClient(boolean testNet) {
     this(testNet ? DEFAULT_JSONRPC_TESTNET_URL : DEFAULT_JSONRPC_URL);
   }
 
-  public BitcoinJSONRPCClient() {
+  public SyscoinJSONRPCClient() {
     this(DEFAULT_JSONRPC_TESTNET_URL);
   }
 
@@ -186,19 +186,19 @@ public class BitcoinJSONRPCClient implements BitcoindRpcClient {
   public Object loadResponse(InputStream in, Object expectedID, boolean close) throws IOException, GenericRpcException {
     try {
       String r = new String(loadStream(in, close), QUERY_CHARSET);
-      logger.log(Level.FINE, "Bitcoin JSON-RPC response:\n{0}", r);
+      logger.log(Level.FINE, "Syscoin JSON-RPC response:\n{0}", r);
       try {
         Map response = (Map) JSON.parse(r);
 
         if (!expectedID.equals(response.get("id")))
-          throw new BitcoinRPCException("Wrong response ID (expected: " + String.valueOf(expectedID) + ", response: " + response.get("id") + ")");
+          throw new SyscoinRPCException("Wrong response ID (expected: " + String.valueOf(expectedID) + ", response: " + response.get("id") + ")");
 
         if (response.get("error") != null)
-          throw new BitcoinRPCException(new BitcoinRPCError((Map)response.get("error")));
+          throw new SyscoinRPCException(new SyscoinRPCError((Map)response.get("error")));
 
         return response.get("result");
       } catch (ClassCastException ex) {
-        throw new BitcoinRPCException("Invalid server response format (data: \"" + r + "\")");
+        throw new SyscoinRPCException("Invalid server response format (data: \"" + r + "\")");
       }
     } finally {
       if (close)
@@ -223,13 +223,13 @@ public class BitcoinJSONRPCClient implements BitcoindRpcClient {
 
       ((HttpURLConnection) conn).setRequestProperty("Authorization", "Basic " + authStr);
       byte[] r = prepareRequest(method, o);
-      logger.log(Level.FINE, "Bitcoin JSON-RPC request:\n{0}", new String(r, QUERY_CHARSET));
+      logger.log(Level.FINE, "Syscoin JSON-RPC request:\n{0}", new String(r, QUERY_CHARSET));
       conn.getOutputStream().write(r);
       conn.getOutputStream().close();
       int responseCode = conn.getResponseCode();
       if (responseCode != 200) {
         InputStream errorStream = conn.getErrorStream();
-        throw new BitcoinRPCException(method, 
+        throw new SyscoinRPCException(method, 
                                       Arrays.deepToString(o), 
                                       responseCode, 
                                       conn.getResponseMessage(), 
@@ -237,7 +237,7 @@ public class BitcoinJSONRPCClient implements BitcoindRpcClient {
       }
       return loadResponse(conn.getInputStream(), "1", true);
     } catch (IOException ex) {
-      throw new BitcoinRPCException(method, Arrays.deepToString(o), ex);
+      throw new SyscoinRPCException(method, Arrays.deepToString(o), ex);
     }
   }
 
@@ -433,18 +433,18 @@ public class BitcoinJSONRPCClient implements BitcoindRpcClient {
   }
 
   @Override
-  public void importPrivKey(String bitcoinPrivKey) throws GenericRpcException {
-    query("importprivkey", bitcoinPrivKey);
+  public void importPrivKey(String syscoinPrivKey) throws GenericRpcException {
+    query("importprivkey", syscoinPrivKey);
   }
 
   @Override
-  public void importPrivKey(String bitcoinPrivKey, String label) throws GenericRpcException {
-    query("importprivkey", bitcoinPrivKey, label);
+  public void importPrivKey(String syscoinPrivKey, String label) throws GenericRpcException {
+    query("importprivkey", syscoinPrivKey, label);
   }
 
   @Override
-  public void importPrivKey(String bitcoinPrivKey, String label, boolean rescan) throws GenericRpcException {
-    query("importprivkey", bitcoinPrivKey, label, rescan);
+  public void importPrivKey(String syscoinPrivKey, String label, boolean rescan) throws GenericRpcException {
+    query("importprivkey", syscoinPrivKey, label, rescan);
   }
 
   @Override
@@ -687,19 +687,19 @@ public class BitcoinJSONRPCClient implements BitcoindRpcClient {
 
   @Override
   @SuppressWarnings("unchecked")
-  public List<String> generate(int numBlocks) throws BitcoinRPCException {
+  public List<String> generate(int numBlocks) throws SyscoinRPCException {
     return (List<String>) query("generate", numBlocks);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public List<String> generate(int numBlocks, long maxTries) throws BitcoinRPCException {
+  public List<String> generate(int numBlocks, long maxTries) throws SyscoinRPCException {
     return (List<String>) query("generate", numBlocks, maxTries);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public List<String> generateToAddress(int numBlocks, String address) throws BitcoinRPCException {
+  public List<String> generateToAddress(int numBlocks, String address) throws SyscoinRPCException {
     return (List<String>) query("generatetoaddress", numBlocks, address);
   }
 
@@ -806,8 +806,8 @@ public class BitcoinJSONRPCClient implements BitcoindRpcClient {
   }
 
   @Override
-  public String signMessage(String bitcoinAdress, String message) throws GenericRpcException {
-    return (String) query("signmessage", bitcoinAdress, message);
+  public String signMessage(String syscoinAdress, String message) throws GenericRpcException {
+    return (String) query("signmessage", syscoinAdress, message);
   }
 
   @Override
@@ -849,8 +849,8 @@ public class BitcoinJSONRPCClient implements BitcoindRpcClient {
   }
 
   @Override
-  public boolean verifyMessage(String bitcoinAddress, String signature, String message) throws GenericRpcException {
-    return (boolean) query("verifymessage", bitcoinAddress, signature, message);
+  public boolean verifyMessage(String syscoinAddress, String signature, String message) throws GenericRpcException {
+    return (boolean) query("verifymessage", syscoinAddress, signature, message);
   }
 
   @Override
@@ -890,10 +890,10 @@ public class BitcoinJSONRPCClient implements BitcoindRpcClient {
     TransactionWrapper tx = new TransactionWrapper((Map<String, ?>) query("gettransaction", txId));
     
     // [#88] Request for invalid Tx should fail
-    // https://github.com/Polve/JavaBitcoindRpcClient/issues/88
+    // https://github.com/Polve/JavaSyscoindRpcClient/issues/88
     RawTransaction rawTx = tx.raw();
     if (rawTx == null || rawTx.vIn().isEmpty() || rawTx.vOut().isEmpty()) {
-      throw new BitcoinRPCException("Invalid Tx: " + txId);
+      throw new SyscoinRPCException("Invalid Tx: " + txId);
     }
     
     return tx;

@@ -1,5 +1,5 @@
-/*
- * Bitcoin-JSON-RPC-Client License
+﻿/*
+ * Syscoin-JSON-RPC-Client License
  * 
  * Copyright (c) 2013, Mikhail Yevchenko.
  * 
@@ -15,11 +15,11 @@
  * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package wf.bitcoin.javabitcoindrpcclient;
+package wf.syscoin.javasyscoindrpcclient;
 
 import java.util.Map;
 
-import wf.bitcoin.krotjson.JSON;
+import wf.syscoin.krotjson.JSON;
 
 /**
  *
@@ -27,17 +27,17 @@ import wf.bitcoin.krotjson.JSON;
  * @author Alessandro Polverini
  */
 @SuppressWarnings("serial")
-public class BitcoinRPCException extends GenericRpcException {
+public class SyscoinRPCException extends GenericRpcException {
   
   private String rpcMethod;
   private String rpcParams;
   private int responseCode;
   private String responseMessage;
   private String response;
-  private BitcoinRPCError rpcError;
+  private SyscoinRPCError rpcError;
 
   /**
-   * Creates a new instance of <code>BitcoinRPCException</code> with response
+   * Creates a new instance of <code>SyscoinRPCException</code> with response
    * detail.
    *
    * @param method the rpc method called
@@ -47,7 +47,7 @@ public class BitcoinRPCException extends GenericRpcException {
    * @param response the error stream received
    */
   @SuppressWarnings("rawtypes")
-  public BitcoinRPCException(String method, 
+  public SyscoinRPCException(String method, 
                              String params, 
                              int    responseCode, 
                              String responseMessage, 
@@ -59,37 +59,37 @@ public class BitcoinRPCException extends GenericRpcException {
     this.responseMessage = responseMessage;
     this.response = response;
     if ( responseCode == 500 ) { 
-        // Bitcoind application error when handle the request
+        // Syscoind application error when handle the request
         // extract code/message for callers to handle
         Map error = (Map) ((Map)JSON.parse(response)).get("error");
         if ( error != null ) {
-            rpcError = new BitcoinRPCError(error);
+            rpcError = new SyscoinRPCError(error);
         }
     }
   }
   
-  public BitcoinRPCException(String method, String params, Throwable cause) {
+  public SyscoinRPCException(String method, String params, Throwable cause) {
     super("RPC Query Failed (method: " + method + ", params: " + params + ")", cause);
     this.rpcMethod = method;
     this.rpcParams = params;
   }
 
   /**
-   * Constructs an instance of <code>BitcoinRPCException</code> with the
+   * Constructs an instance of <code>SyscoinRPCException</code> with the
    * specified detail message.
    *
    * @param msg the detail message.
    */
-  public BitcoinRPCException(String msg) {
+  public SyscoinRPCException(String msg) {
     super(msg);
   }
 
-  public BitcoinRPCException(BitcoinRPCError error) {
+  public SyscoinRPCException(SyscoinRPCError error) {
       super(error.getMessage());
       this.rpcError  = error;
   }
   
-  public BitcoinRPCException(String message, Throwable cause) {
+  public SyscoinRPCException(String message, Throwable cause) {
     super(message, cause);
   }
 
@@ -122,7 +122,7 @@ public class BitcoinRPCException extends GenericRpcException {
   /**
    * @return response message from bitcored
    */
-  public BitcoinRPCError getRPCError() {
+  public SyscoinRPCError getRPCError() {
       return this.rpcError;
   }
 }

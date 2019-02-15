@@ -1,15 +1,15 @@
-/*
+﻿/*
  * Copyright (c) 2013, Mikhail Yevchenko. All rights reserved. PROPRIETARY/CONFIDENTIAL.
  */
-package wf.bitcoin.javabitcoindrpcclient;
+package wf.syscoin.javasyscoindrpcclient;
 
-import wf.bitcoin.javabitcoindrpcclient.BitcoindRpcClient.Transaction;
+import wf.syscoin.javasyscoindrpcclient.SyscoindRpcClient.Transaction;
 
 /**
  *
  * @author Mikhail Yevchenko m.ṥῥẚɱ.ѓѐḿởύḙ@azazar.com
  */
-public class SimpleBitcoinPaymentListener implements BitcoinPaymentListener {
+public class SimpleSyscoinPaymentListener implements SyscoinPaymentListener {
 
   @Override
   public void block(String blockHash) {

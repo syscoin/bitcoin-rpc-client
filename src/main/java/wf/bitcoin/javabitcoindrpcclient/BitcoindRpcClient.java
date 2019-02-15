@@ -1,5 +1,5 @@
-/*
- * BitcoindRpcClient-JSON-RPC-Client License
+﻿/*
+ * SyscoindRpcClient-JSON-RPC-Client License
  * 
  * Copyright (c) 2013, Mikhail Yevchenko.
  * 
@@ -18,7 +18,7 @@
  /*
  * Repackaged with simple additions for easier maven usage by Alessandro Polverini
  */
-package wf.bitcoin.javabitcoindrpcclient;
+package wf.syscoin.javasyscoindrpcclient;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -31,7 +31,7 @@ import java.util.Map;
  * @author Mikhail Yevchenko m.ṥῥẚɱ.ѓѐḿởύḙ@azazar.com Small modifications by
  * Alessandro Polverini polverini at gmail.com
  */
-public interface BitcoindRpcClient {
+public interface SyscoindRpcClient {
 
   /*
    * Blockchain
@@ -57,7 +57,7 @@ public interface BitcoindRpcClient {
   /**
    * The getbestblockhash RPC returns the header hash of the most recent block on the best block chain.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getbestblockhash">getbestblockhash</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getbestblockhash">getbestblockhash</a>
    */
   String getBestBlockHash() throws GenericRpcException;
 
@@ -66,8 +66,8 @@ public interface BitcoindRpcClient {
    *
    * This is a convenience method as a combination of {@link #getBlockHash(int)} and {@link #getBlock(String)}.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getblockhash">getblockhash</a>
-   * @see <a href="https://bitcoin.org/en/developer-reference#getblock">getblock</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getblockhash">getblockhash</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getblock">getblock</a>
    */
   Block getBlock(int height) throws GenericRpcException;
 
@@ -76,7 +76,7 @@ public interface BitcoindRpcClient {
    * 
    * @param blockHash The hash of the header of the block to get, encoded as hex in RPC byte order
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getblock">getblock</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getblock">getblock</a>
    */
   Block getBlock(String blockHash) throws GenericRpcException;
 
@@ -85,7 +85,7 @@ public interface BitcoindRpcClient {
    * 
    * @param blockHash The hash of the header of the block to get, encoded as hex in RPC byte order
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getblock">getblock</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getblock">getblock</a>
    */
   String getRawBlock(String blockHash) throws GenericRpcException;
 
@@ -94,7 +94,7 @@ public interface BitcoindRpcClient {
    * 
    * @return Information about the current state of the local block chain
    *  
-   * @see <a href="https://bitcoin.org/en/developer-reference#getblockchaininfo">getblockchaininfo</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getblockchaininfo">getblockchaininfo</a>
    */
   BlockChainInfo getBlockChainInfo() throws GenericRpcException;
 
@@ -103,7 +103,7 @@ public interface BitcoindRpcClient {
    * 
    * @return The number of blocks in the local best block chain.
    *  
-   * @see <a href="https://bitcoin.org/en/developer-reference#getblockcount">getblockcount</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getblockcount">getblockcount</a>
    */
   int getBlockCount() throws GenericRpcException;
 
@@ -113,7 +113,7 @@ public interface BitcoindRpcClient {
    * @param height The height of the block whose header hash should be returned.
    * @return The hash of the block at the requested height, encoded as hex in RPC byte order, or JSON null if an error occurred
    *  
-   * @see <a href="https://bitcoin.org/en/developer-reference#getblockhash">getblockhash</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getblockhash">getblockhash</a>
    */
   String getBlockHash(int height) throws GenericRpcException;
 
@@ -122,7 +122,7 @@ public interface BitcoindRpcClient {
    * 
    * @return The difficulty of creating a block with the same target threshold (nBits) as the highest-height block in the local best block chain.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getdifficulty">getdifficulty</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getdifficulty">getdifficulty</a>
    */
   BigDecimal getDifficulty();
 
@@ -132,7 +132,7 @@ public interface BitcoindRpcClient {
    * 
    * @return An array of TXIDs belonging to transactions in the memory pool.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getrawmempool">getrawmempool</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getrawmempool">getrawmempool</a>
    */
   List<String> getRawMemPool() throws GenericRpcException;
 
@@ -144,7 +144,7 @@ public interface BitcoindRpcClient {
    * 
    * @return Information about the output.
    *  
-   * @see <a href="https://bitcoin.org/en/developer-reference#gettxout">gettxout</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#gettxout">gettxout</a>
    */
   TxOut getTxOut(String txId, long vout);
 
@@ -154,14 +154,14 @@ public interface BitcoindRpcClient {
    * 
    * @return Information about the UTXO set
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#gettxoutsetinfo">gettxoutsetinfo</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#gettxoutsetinfo">gettxoutsetinfo</a>
    */
   TxOutSetInfo getTxOutSetInfo();
 
   /**
    * The verifychain RPC verifies each entry in the local block chain database.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#verifychain">verifychain</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#verifychain">verifychain</a>
    * 
    * [TODO] Add parameters checkLevel, numOfBlocks
    */
@@ -178,9 +178,9 @@ public interface BitcoindRpcClient {
    */
   
   /**
-   * The stop RPC safely shuts down the Bitcoin Core server.
+   * The stop RPC safely shuts down the Syscoin Core server.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#stop">stop</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#stop">stop</a>
    */
   void stop();
 
@@ -195,9 +195,9 @@ public interface BitcoindRpcClient {
    * @param numBlocks The number of blocks to generate.
    * @return An array containing the block header hashes of the generated blocks
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#generate">generate</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#generate">generate</a>
    */
-  List<String> generate(int numBlocks) throws BitcoinRPCException;
+  List<String> generate(int numBlocks) throws SyscoinRPCException;
 
   /**
    * The generate RPC nearly instantly generates blocks.
@@ -206,19 +206,19 @@ public interface BitcoindRpcClient {
    * @param maxTries The maximum number of iterations that are tried to create the requested number of blocks. 
    * @return An array containing the block header hashes of the generated blocks
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#generate">generate</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#generate">generate</a>
    */
-  List<String> generate(int numBlocks, long maxTries) throws BitcoinRPCException;
+  List<String> generate(int numBlocks, long maxTries) throws SyscoinRPCException;
 
   /**
    * The generatetoaddress RPC mines blocks immediately to a specified address.
    * 
    * @param numBlocks The number of blocks to generate.
-   * @param address The address to send the newly generated Bitcoin to
+   * @param address The address to send the newly generated Syscoin to
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#generatetoaddress">generatetoaddress</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#generatetoaddress">generatetoaddress</a>
    */
-  List<String> generateToAddress(int numBlocks, String address) throws BitcoinRPCException;
+  List<String> generateToAddress(int numBlocks, String address) throws SyscoinRPCException;
 
   /*
    * Mining
@@ -234,7 +234,7 @@ public interface BitcoindRpcClient {
    * 
    * @return Various mining-related information
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getmininginfo">getmininginfo</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getmininginfo">getmininginfo</a>
    */
   public MiningInfo getMiningInfo() throws GenericRpcException;
 
@@ -243,7 +243,7 @@ public interface BitcoindRpcClient {
    * 
    * @return The estimated number of hashes per second based on the parameters provided.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getgenerate">getgenerate</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getgenerate">getgenerate</a>
    * 
    * [TODO] Add parameters blocks, height
    */
@@ -254,7 +254,7 @@ public interface BitcoindRpcClient {
    * 
    * @param hexData The full block to submit in serialized block format as hex
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#submitblock">submitblock</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#submitblock">submitblock</a>
    */
   void submitBlock(String hexData);
 
@@ -263,7 +263,7 @@ public interface BitcoindRpcClient {
    *
    * @param blockHash the hash of the block to mark as invalid
    * 
-   * [TODO] Add to https://bitcoin.org/en/developer-reference
+   * [TODO] Add to https://syscoin.org/en/developer-reference
    */
   void invalidateBlock(String blockHash) throws GenericRpcException;
 
@@ -273,7 +273,7 @@ public interface BitcoindRpcClient {
    *
    * @param blockHash The hash of the block to reconsider
    * 
-   * [TODO] Add to https://bitcoin.org/en/developer-reference
+   * [TODO] Add to https://syscoin.org/en/developer-reference
    */
   void reconsiderBlock(String blockHash) throws GenericRpcException;
 
@@ -295,7 +295,7 @@ public interface BitcoindRpcClient {
    * @param node The node to add as a string in the form of <IP address>:<port>.
    * @param command What to do with the IP address above. 
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#addnode">addnode</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#addnode">addnode</a>
    */
   void addNode(String node, String command);
   
@@ -303,11 +303,11 @@ public interface BitcoindRpcClient {
    * The getaddednodeinfo RPC returns information about the given added node, or all added nodes (except onetry nodes). 
    * Only nodes which have been manually added using the addnode RPC will have their information displayed.
    * 
-   * @param details Removed in Bitcoin Core 0.14.0
+   * @param details Removed in Syscoin Core 0.14.0
    * @param node The node to get information about in the same <IP address>:<port> format as the addnode RPC.
    * @return An array containing objects describing each added node.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getaddednodeinfo">getaddednodeinfo</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getaddednodeinfo">getaddednodeinfo</a>
    */
   List<NodeInfo> getAddedNodeInfo(boolean details, String node);
 
@@ -316,7 +316,7 @@ public interface BitcoindRpcClient {
    * 
    * @return The total number of connections to other nodes (both inbound and outbound)
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getconnectioncount">getconnectioncount</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getconnectioncount">getconnectioncount</a>
    */
   long getConnectionCount();
 
@@ -325,7 +325,7 @@ public interface BitcoindRpcClient {
    * 
    * @return An object containing information about the node’s network totals
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getnettotals">getnettotals</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getnettotals">getnettotals</a>
    */
   NetTotals getNetTotals();
 
@@ -334,7 +334,7 @@ public interface BitcoindRpcClient {
    * 
    * @return Information about this node’s connection to the network
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getnetworkinfo">getnetworkinfo</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getnetworkinfo">getnetworkinfo</a>
    */
   NetworkInfo getNetworkInfo() throws GenericRpcException;
 
@@ -343,7 +343,7 @@ public interface BitcoindRpcClient {
    * 
    * @return An array of objects each describing one connected node.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getpeerinfo">getpeerinfo</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getpeerinfo">getpeerinfo</a>
    */
   List<PeerInfoResult> getPeerInfo();
 
@@ -351,7 +351,7 @@ public interface BitcoindRpcClient {
    * The ping RPC sends a P2P ping message to all connected nodes to measure ping time. 
    * Results are provided by the getpeerinfo RPC pingtime and pingwait fields as decimal seconds. 
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#ping">ping</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#ping">ping</a>
    */
   void ping();
 
@@ -380,7 +380,7 @@ public interface BitcoindRpcClient {
    * @param outputs The addresses and amounts to pay
    * @return The resulting unsigned raw transaction in serialized transaction format encoded as hex.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#createrawtransaction">createrawtransaction</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#createrawtransaction">createrawtransaction</a>
    */
   String createRawTransaction(List<TxInput> inputs, List<TxOutput> outputs) throws GenericRpcException;
 
@@ -390,18 +390,18 @@ public interface BitcoindRpcClient {
    * @param hex The redeem script to decode as a hex-encoded serialized script
    * @return An object describing the decoded script, or JSON null if the script could not be decoded
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#decodescript">decodescript</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#decodescript">decodescript</a>
    */
   DecodedScript decodeScript(String hex);
 
   /**
    * The getrawtransaction RPC gets a hex-encoded serialized transaction or a JSON object describing the transaction. 
-   * By default, Bitcoin Core only stores complete transaction data for UTXOs and your own transactions, 
-   * so the RPC may fail on historic transactions unless you use the non-default txindex=1 in your Bitcoin Core startup settings.
+   * By default, Syscoin Core only stores complete transaction data for UTXOs and your own transactions, 
+   * so the RPC may fail on historic transactions unless you use the non-default txindex=1 in your Syscoin Core startup settings.
    * 
    * @param txId The TXID of the transaction to get, encoded as hex in RPC byte order
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getrawtransaction">getrawtransaction</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getrawtransaction">getrawtransaction</a>
    */
   RawTransaction getRawTransaction(String txId) throws GenericRpcException;
 
@@ -410,7 +410,7 @@ public interface BitcoindRpcClient {
    * 
    * @param txId The TXID of the transaction to get, encoded as hex in RPC byte order
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getrawtransaction">getrawtransaction</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getrawtransaction">getrawtransaction</a>
    */
   String getRawTransactionHex(String txId) throws GenericRpcException;
 
@@ -421,7 +421,7 @@ public interface BitcoindRpcClient {
    * 
    * @return If the transaction was accepted by the node for broadcast, this will be the TXID of the transaction encoded as hex in RPC byte order.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#sendrawtransaction">sendrawtransaction</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#sendrawtransaction">sendrawtransaction</a>
    */
   String sendRawTransaction(String hex) throws GenericRpcException;
 
@@ -434,7 +434,7 @@ public interface BitcoindRpcClient {
    * 
    * @return The results of the signature
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#signrawtransaction">signrawtransaction</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#signrawtransaction">signrawtransaction</a>
    */
   String signRawTransaction(String hex, List<? extends TxInput> inputs, List<String> privateKeys) throws GenericRpcException;
 
@@ -452,7 +452,7 @@ public interface BitcoindRpcClient {
    * @param nRequired The minimum (m) number of signatures required to spend this m-of-n multisig script
    * @param keys An array of strings with each string being a public key or address
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#createmultisig">createmultisig</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#createmultisig">createmultisig</a>
    */
   MultiSig createMultiSig(int nRequired, List<String> keys) throws GenericRpcException;
 
@@ -461,19 +461,19 @@ public interface BitcoindRpcClient {
    * and return the number of blocks for which the estimate is valid. Uses virtual transaction size as defined in BIP 141 (witness data is discounted).
    * 
    * @param blocks Confirmation target in blocks
-   * @return estimate fee rate in BTC/kB
+   * @return estimate fee rate in SYS/kB
    * 
-   * [TODO] Add to https://bitcoin.org/en/developer-reference
+   * [TODO] Add to https://syscoin.org/en/developer-reference
    */
   SmartFeeResult estimateSmartFee(int blocks);
   
   /**
-   * The validateaddress RPC returns information about the given Bitcoin address.
+   * The validateaddress RPC returns information about the given Syscoin address.
    * 
    * @param address The P2PKH or P2SH address to validate encoded in base58check format
    * @return Information about the address
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#validateaddress">validateaddress</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#validateaddress">validateaddress</a>
    */
   AddressValidationResult validateAddress(String address) throws GenericRpcException;
 
@@ -484,7 +484,7 @@ public interface BitcoindRpcClient {
    * @param signature The signature created by the signer encoded as base-64 (the format output by the signmessage RPC)
    * @param message The message exactly as it was signed
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#verifymessage">verifymessage</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#verifymessage">verifymessage</a>
    */
   boolean verifyMessage(String address, String signature, String message);
 
@@ -525,7 +525,7 @@ public interface BitcoindRpcClient {
    * @param keyObject An array of strings with each string being a public key or address
    * @return The P2SH multisig address.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#addmultisigaddress">addmultisigaddress</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#addmultisigaddress">addmultisigaddress</a>
    */
   String addMultiSigAddress(int nRequired, List<String> keyObject);
 
@@ -538,7 +538,7 @@ public interface BitcoindRpcClient {
    * 
    * @return The P2SH multisig address.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#addmultisigaddress">addmultisigaddress</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#addmultisigaddress">addmultisigaddress</a>
    */
   String addMultiSigAddress(int nRequired, List<String> keyObject, String account);
 
@@ -547,7 +547,7 @@ public interface BitcoindRpcClient {
    * 
    * @param destination A filename or directory name.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#backupwallet">backupwallet</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#backupwallet">backupwallet</a>
    */
   void backupWallet(String destination);
 
@@ -557,7 +557,7 @@ public interface BitcoindRpcClient {
    * 
    * @param address The P2PKH address corresponding to the private key you want returned.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#dumpprivkey">dumpprivkey</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#dumpprivkey">dumpprivkey</a>
    */
   public String dumpPrivKey(String address) throws GenericRpcException;
 
@@ -566,7 +566,7 @@ public interface BitcoindRpcClient {
    * 
    * @param filename The file in which the wallet dump will be placed.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#dumpwallet">dumpwallet</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#dumpwallet">dumpwallet</a>
    */
   void dumpWallet(String filename);
 
@@ -577,30 +577,30 @@ public interface BitcoindRpcClient {
    * 
    * @param passPhrase The passphrase to use for the encrypted wallet. 
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#encryptwallet">encryptwallet</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#encryptwallet">encryptwallet</a>
    */
   void encryptWallet(String passPhrase);
 
   /**
    * The getaccount RPC returns the name of the account associated with the given address.
    * 
-   * @param address A P2PKH or P2SH Bitcoin address belonging either to a specific account or the default account 
+   * @param address A P2PKH or P2SH Syscoin address belonging either to a specific account or the default account 
    * @return The name of an account, or an empty string
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getaccount">getaccount</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getaccount">getaccount</a>
    */
   @Deprecated
   public String getAccount(String address) throws GenericRpcException;
 
   /**
-   * The getaccountaddress RPC returns the current Bitcoin address for receiving payments to this account. 
+   * The getaccountaddress RPC returns the current Syscoin address for receiving payments to this account. 
    * If the account doesn’t exist, it creates both the account and a new address for receiving payment. 
    * Once a payment has been received to an address, future calls to this RPC for the same account will return a different address.
    * 
    * @param account The name of an account. 
    * @return An address, belonging to the account specified, which has not yet received any payments
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getaccountaddress">getaccountaddress</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getaccountaddress">getaccountaddress</a>
    */
   @Deprecated
   public String getAccountAddress(String account) throws GenericRpcException;
@@ -610,67 +610,67 @@ public interface BitcoindRpcClient {
    * 
    * @param account The name of an account to get the balance for.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getaddressesbyaccount">getaddressesbyaccount</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getaddressesbyaccount">getaddressesbyaccount</a>
    */
   @Deprecated
   public List<String> getAddressesByAccount(String account) throws GenericRpcException;
 
   /**
-   * The getbalance RPC gets the balance in decimal bitcoins for the default account.
+   * The getbalance RPC gets the balance in decimal syscoins for the default account.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getbalance">getbalance</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getbalance">getbalance</a>
    */
   public BigDecimal getBalance() throws GenericRpcException;
 
   /**
-   * The getbalance RPC gets the balance in decimal bitcoins across all accounts or for a particular account.
+   * The getbalance RPC gets the balance in decimal syscoins across all accounts or for a particular account.
    * 
    * @param account The name of an account to get the balance for.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getbalance">getbalance</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getbalance">getbalance</a>
    */
   public BigDecimal getBalance(String account) throws GenericRpcException;
 
   /**
-   * The getbalance RPC gets the balance in decimal bitcoins across all accounts or for a particular account.
+   * The getbalance RPC gets the balance in decimal syscoins across all accounts or for a particular account.
    * 
    * @param account The name of an account to get the balance for.
    * @param minConf The minimum number of confirmations
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getbalance">getbalance</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getbalance">getbalance</a>
    */
   public BigDecimal getBalance(String account, int minConf) throws GenericRpcException;
 
   /**
-   * The getnewaddress RPC returns a new Bitcoin address for receiving payments. 
+   * The getnewaddress RPC returns a new Syscoin address for receiving payments. 
    *  
-   * @see <a href="https://bitcoin.org/en/developer-reference#getnewaddress">getnewaddress</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getnewaddress">getnewaddress</a>
    */
   String getNewAddress() throws GenericRpcException;
 
   /**
-   * The getnewaddress RPC returns a new Bitcoin address for receiving payments. 
+   * The getnewaddress RPC returns a new Syscoin address for receiving payments. 
    * If an account is specified, payments received with the address will be credited to that account.
    *  
-   * @see <a href="https://bitcoin.org/en/developer-reference#getnewaddress">getnewaddress</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getnewaddress">getnewaddress</a>
    */
   String getNewAddress(String account) throws GenericRpcException;
 
   /**
-   * The getnewaddress RPC returns a new Bitcoin address for receiving payments. 
+   * The getnewaddress RPC returns a new Syscoin address for receiving payments. 
    * If an account is specified, payments received with the address will be credited to that account.
    * The address type to use. Options are "legacy", "p2sh-segwit", and "bech32".
    *  
-   * @see <a href="https://bitcoin.org/en/developer-reference#getnewaddress">getnewaddress</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getnewaddress">getnewaddress</a>
    */
   String getNewAddress(String account, String addressType) throws GenericRpcException;
 
   /**
-   * The getrawchangeaddress RPC returns a new Bitcoin address for receiving change. This is for use with raw transactions, not normal use.
+   * The getrawchangeaddress RPC returns a new Syscoin address for receiving change. This is for use with raw transactions, not normal use.
    * 
    * @return A P2PKH address which has not previously been returned by this RPC.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getrawchangeaddress">getrawchangeaddress</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getrawchangeaddress">getrawchangeaddress</a>
    */
   String getRawChangeAddress();
 
@@ -678,9 +678,9 @@ public interface BitcoindRpcClient {
    * The getreceivedbyaccount RPC returns the total amount received by addresses in a particular account from transactions with the specified number of confirmations.
    * 
    * @param account The name of the account containing the addresses to get.
-   * @return The number of bitcoins received by the account.
+   * @return The number of syscoins received by the account.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getreceivedbyaccount">getreceivedbyaccount</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getreceivedbyaccount">getreceivedbyaccount</a>
    */
   @Deprecated
   BigDecimal getReceivedByAccount(String account);
@@ -690,9 +690,9 @@ public interface BitcoindRpcClient {
    * It does not count coinbase transactions.
    *
    * @param address The address whose transactions should be tallied
-   * @return The number of bitcoins received by the address
+   * @return The number of syscoins received by the address
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getreceivedbyaddress">getreceivedbyaddress</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getreceivedbyaddress">getreceivedbyaddress</a>
    */
   BigDecimal getReceivedByAddress(String address) throws GenericRpcException;
 
@@ -702,9 +702,9 @@ public interface BitcoindRpcClient {
    *
    * @param address The address whose transactions should be tallied
    * @param minConf The minimum number of confirmations
-   * @return The number of bitcoins received by the address
+   * @return The number of syscoins received by the address
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getreceivedbyaddress">getreceivedbyaddress</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getreceivedbyaddress">getreceivedbyaddress</a>
    */
   BigDecimal getReceivedByAddress(String address, int minConf) throws GenericRpcException;
 
@@ -713,16 +713,16 @@ public interface BitcoindRpcClient {
    *  
    * @param txId The TXID of the transaction to get details about.
    *  
-   * @see <a href="https://bitcoin.org/en/developer-reference#gettransaction">gettransaction</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#gettransaction">gettransaction</a>
    */
   Transaction getTransaction(String txId);
   
   /**
    * The getunconfirmedbalance RPC returns the wallet’s total unconfirmed balance.
    * 
-   * @return The total number of bitcoins paid to this wallet in unconfirmed transactions
+   * @return The total number of syscoins paid to this wallet in unconfirmed transactions
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getunconfirmedbalance">getunconfirmedbalance</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getunconfirmedbalance">getunconfirmedbalance</a>
    */
   BigDecimal getUnconfirmedBalance();
 
@@ -731,7 +731,7 @@ public interface BitcoindRpcClient {
    * 
    * @return An object describing the wallet
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#getwalletinfo">getwalletinfo</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#getwalletinfo">getwalletinfo</a>
    */
   WalletInfo getWalletInfo();
 
@@ -745,7 +745,7 @@ public interface BitcoindRpcClient {
    * 
    * @return Null on success
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#importaddress">importaddress</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#importaddress">importaddress</a>
    * 
    * [TODO] Should this really return Object?
    */
@@ -755,49 +755,49 @@ public interface BitcoindRpcClient {
    * The importprivkey RPC adds a private key to your wallet. 
    * The key should be formatted in the wallet import format created by the dumpprivkey RPC.
    * 
-   * @param bitcoinPrivKey The private key to import into the wallet encoded in base58check using wallet import format (WIF)
+   * @param syscoinPrivKey The private key to import into the wallet encoded in base58check using wallet import format (WIF)
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#importprivkey">importprivkey</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#importprivkey">importprivkey</a>
    */
-  void importPrivKey(String bitcoinPrivKey) throws GenericRpcException;
+  void importPrivKey(String syscoinPrivKey) throws GenericRpcException;
 
   /**
    * The importprivkey RPC adds a private key to your wallet. 
    * The key should be formatted in the wallet import format created by the dumpprivkey RPC.
    * 
-   * @param bitcoinPrivKey The private key to import into the wallet encoded in base58check using wallet import format (WIF)
+   * @param syscoinPrivKey The private key to import into the wallet encoded in base58check using wallet import format (WIF)
    * @param account The name of an account to which transactions involving the key should be assigned.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#importprivkey">importprivkey</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#importprivkey">importprivkey</a>
    */
-  void importPrivKey(String bitcoinPrivKey, String account) throws GenericRpcException;
+  void importPrivKey(String syscoinPrivKey, String account) throws GenericRpcException;
 
   /**
    * The importprivkey RPC adds a private key to your wallet. 
    * The key should be formatted in the wallet import format created by the dumpprivkey RPC.
    * 
-   * @param bitcoinPrivKey The private key to import into the wallet encoded in base58check using wallet import format (WIF)
+   * @param syscoinPrivKey The private key to import into the wallet encoded in base58check using wallet import format (WIF)
    * @param account The name of an account to which transactions involving the key should be assigned.
    * @param rescan Set to true (the default) to rescan the entire local block database for transactions affecting any address or pubkey script in the wallet.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#importprivkey">importprivkey</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#importprivkey">importprivkey</a>
    */
-  void importPrivKey(String bitcoinPrivKey, String account, boolean rescan) throws GenericRpcException;
+  void importPrivKey(String syscoinPrivKey, String account, boolean rescan) throws GenericRpcException;
 
   /**
    * The importwallet RPC imports private keys from a file in wallet dump file format (see the dumpwallet RPC). 
    * These keys will be added to the keys currently in the wallet.
    *  
-   * @param filename The file to import. The path is relative to Bitcoin Core’s working directory
+   * @param filename The file to import. The path is relative to Syscoin Core’s working directory
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#importwallet">importwallet</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#importwallet">importwallet</a>
    */
   void importWallet(String filename);
 
   /**
    * The keypoolrefill RPC fills the cache of unused pre-generated keys (the keypool).
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#keypoolrefill">keypoolrefill</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#keypoolrefill">keypoolrefill</a>
    */
   void keyPoolRefill();
 
@@ -806,7 +806,7 @@ public interface BitcoindRpcClient {
    *
    * @return Map that has account names as keys, account balances as values
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#listaccounts">listaccounts</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#listaccounts">listaccounts</a>
    */
   @Deprecated
   Map<String, Number> listAccounts() throws GenericRpcException;
@@ -817,7 +817,7 @@ public interface BitcoindRpcClient {
    * @param minConf The minimum number of confirmations an externally-generated transaction must have before it is counted towards the balance.
    * @return Map that has account names as keys, account balances as values
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#listaccounts">listaccounts</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#listaccounts">listaccounts</a>
    */
   @Deprecated
   Map<String, Number> listAccounts(int minConf) throws GenericRpcException;
@@ -829,7 +829,7 @@ public interface BitcoindRpcClient {
    * @param watchonly Include balances in watch-only addresses.
    * @return Map that has account names as keys, account balances as values
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#listaccounts">listaccounts</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#listaccounts">listaccounts</a>
    */
   @Deprecated
   Map<String, Number> listAccounts(int minConf, boolean watchonly) throws GenericRpcException;
@@ -837,39 +837,39 @@ public interface BitcoindRpcClient {
   /**
    * The listlockunspent RPC returns a list of temporarily unspendable (locked) outputs.
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#listlockunspent">listlockunspent</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#listlockunspent">listlockunspent</a>
    */
   List<LockedUnspent> listLockUnspent();
   
   /**
-   * The listreceivedbyaddress RPC lists the total number of bitcoins received by each address.
+   * The listreceivedbyaddress RPC lists the total number of syscoins received by each address.
    * 
    * @return An array containing objects each describing a particular address
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#listreceivedbyaddress">listreceivedbyaddress</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#listreceivedbyaddress">listreceivedbyaddress</a>
    */
   List<ReceivedAddress> listReceivedByAddress() throws GenericRpcException;
 
   /**
-   * The listreceivedbyaddress RPC lists the total number of bitcoins received by each address.
+   * The listreceivedbyaddress RPC lists the total number of syscoins received by each address.
    * 
    * @param minConf The minimum number of confirmations an externally-generated transaction must have before it is counted towards the balance.
    * 
    * @return An array containing objects each describing a particular address
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#listreceivedbyaddress">listreceivedbyaddress</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#listreceivedbyaddress">listreceivedbyaddress</a>
    */
   List<ReceivedAddress> listReceivedByAddress(int minConf) throws GenericRpcException;
 
   /**
-   * The listreceivedbyaddress RPC lists the total number of bitcoins received by each address.
+   * The listreceivedbyaddress RPC lists the total number of syscoins received by each address.
    * 
    * @param minConf The minimum number of confirmations an externally-generated transaction must have before it is counted towards the balance.
    * @param includeEmpty Set to true to display accounts which have never received a payment. 
    * 
    * @return An array containing objects each describing a particular address
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#listreceivedbyaddress">listreceivedbyaddress</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#listreceivedbyaddress">listreceivedbyaddress</a>
    */
   List<ReceivedAddress> listReceivedByAddress(int minConf, boolean includeEmpty) throws GenericRpcException;
 
@@ -878,7 +878,7 @@ public interface BitcoindRpcClient {
    * 
    * @return An object containing an array of transactions and the lastblock field
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#listsinceblock">listsinceblock</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#listsinceblock">listsinceblock</a>
    */
   TransactionsSinceBlock listSinceBlock() throws GenericRpcException;
 
@@ -888,7 +888,7 @@ public interface BitcoindRpcClient {
    * @param blockHash The hash of a block header encoded as hex in RPC byte order.
    * @return An object containing an array of transactions and the lastblock field
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#listsinceblock">listsinceblock</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#listsinceblock">listsinceblock</a>
    */
   TransactionsSinceBlock listSinceBlock(String blockHash) throws GenericRpcException;
 
@@ -900,7 +900,7 @@ public interface BitcoindRpcClient {
    * 
    * @return An object containing an array of transactions and the lastblock field
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#listsinceblock">listsinceblock</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#listsinceblock">listsinceblock</a>
    */
   TransactionsSinceBlock listSinceBlock(String blockHash, int targetConfirmations) throws GenericRpcException;
 
@@ -909,7 +909,7 @@ public interface BitcoindRpcClient {
    * 
    * @return An array containing objects, with each object describing a payment or internal accounting entry (not a transaction).
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#listtransactions">listtransactions</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#listtransactions">listtransactions</a>
    */
   List<Transaction> listTransactions() throws GenericRpcException;
 
@@ -920,7 +920,7 @@ public interface BitcoindRpcClient {
    * 
    * @return An array containing objects, with each object describing a payment or internal accounting entry (not a transaction).
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#listtransactions">listtransactions</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#listtransactions">listtransactions</a>
    */
   List<Transaction> listTransactions(String account) throws GenericRpcException;
 
@@ -932,7 +932,7 @@ public interface BitcoindRpcClient {
    * 
    * @return An array containing objects, with each object describing a payment or internal accounting entry (not a transaction).
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#listtransactions">listtransactions</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#listtransactions">listtransactions</a>
    */
   List<Transaction> listTransactions(String account, int count) throws GenericRpcException;
 
@@ -945,7 +945,7 @@ public interface BitcoindRpcClient {
    * 
    * @return An array containing objects, with each object describing a payment or internal accounting entry (not a transaction).
    * 
-   * @see <a href="https://bitcoin.org/en/developer-reference#listtransactions">listtransactions</a>
+   * @see <a href="https://syscoin.org/en/developer-reference#listtransactions">listtransactions</a>
    */
   List<Transaction> listTransactions(String account, int count, int skip) throws GenericRpcException;
 
@@ -954,7 +954,7 @@ public interface BitcoindRpcClient {
   * 
   * @return An array of objects each describing an unspent output.
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#listunspent">listunspent</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#listunspent">listunspent</a>
   */
  List<Unspent> listUnspent() throws GenericRpcException;
 
@@ -965,7 +965,7 @@ public interface BitcoindRpcClient {
   * 
   * @return An array of objects each describing an unspent output.
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#listunspent">listunspent</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#listunspent">listunspent</a>
   */
  List<Unspent> listUnspent(int minConf) throws GenericRpcException;
 
@@ -977,7 +977,7 @@ public interface BitcoindRpcClient {
   * 
   * @return An array of objects each describing an unspent output.
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#listunspent">listunspent</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#listunspent">listunspent</a>
   */
  List<Unspent> listUnspent(int minConf, int maxConf) throws GenericRpcException;
 
@@ -990,13 +990,13 @@ public interface BitcoindRpcClient {
   * 
   * @return An array of objects each describing an unspent output.
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#listunspent">listunspent</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#listunspent">listunspent</a>
   */
  List<Unspent> listUnspent(int minConf, int maxConf, String... addresses) throws GenericRpcException;
 
  /**
   * The lockunspent RPC temporarily locks or unlocks specified transaction outputs. 
-  * A locked transaction output will not be chosen by automatic coin selection when spending bitcoins.
+  * A locked transaction output will not be chosen by automatic coin selection when spending syscoins.
   * 
   * @param unlock Set to false to lock the outputs specified in the following parameter. Set to true to unlock the outputs specified.
   * @param txid The TXID of the transaction containing the output to lock or unlock, encoded as hex.
@@ -1004,7 +1004,7 @@ public interface BitcoindRpcClient {
   * 
   * @return true if successful.
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#lockunspent">lockunspent</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#lockunspent">lockunspent</a>
   */
  boolean lockUnspent(boolean unlock, String txid, int vout) throws GenericRpcException;
 
@@ -1013,9 +1013,9 @@ public interface BitcoindRpcClient {
   * 
   * @param fromAccount The name of the account to move the funds from
   * @param toAccount The name of the account to move the funds to
-  * @param amount The amount of bitcoins to move
+  * @param amount The amount of syscoins to move
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#move">move</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#move">move</a>
   */
  @Deprecated
  boolean move(String fromAccount, String toAccount, BigDecimal amount) throws GenericRpcException;
@@ -1025,85 +1025,85 @@ public interface BitcoindRpcClient {
   * 
   * @param fromAccount The name of the account to move the funds from
   * @param toAccount The name of the account to move the funds to
-  * @param amount The amount of bitcoins to move
+  * @param amount The amount of syscoins to move
   * @param comment A comment to assign to this move payment
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#move">move</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#move">move</a>
   */
  @Deprecated
  boolean move(String fromAccount, String toAccount, BigDecimal amount, String comment) throws GenericRpcException;
 
  /**
-  * @see <a href="https://bitcoin.org/en/developer-reference#move">move</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#move">move</a>
   * @deprecated
   */
  boolean move(String fromAccount, String toAccount, BigDecimal amount, int minConf) throws GenericRpcException;
 
  /**
-  * @see <a href="https://bitcoin.org/en/developer-reference#move">move</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#move">move</a>
   * @deprecated
   */
  boolean move(String fromAccount, String toAccount, BigDecimal amount, int minConf, String comment) throws GenericRpcException;
 
 
  /**
-  * The sendfrom RPC spends an amount from a local account to a bitcoin address.
+  * The sendfrom RPC spends an amount from a local account to a syscoin address.
   * 
-  * @param fromAccount The name of the account from which the bitcoins should be spent.
-  * @param toAddress A P2PKH or P2SH address to which the bitcoins should be sent
-  * @param amount The amount to spend in bitcoins.
+  * @param fromAccount The name of the account from which the syscoins should be spent.
+  * @param toAddress A P2PKH or P2SH address to which the syscoins should be sent
+  * @param amount The amount to spend in syscoins.
   *  
   * @return The TXID of the sent transaction, encoded as hex in RPC byte order
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#sendfrom">sendfrom</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#sendfrom">sendfrom</a>
   */
  @Deprecated
  String sendFrom(String fromAccount, String toAddress, BigDecimal amount) throws GenericRpcException;
 
  /**
-  * The sendfrom RPC spends an amount from a local account to a bitcoin address.
+  * The sendfrom RPC spends an amount from a local account to a syscoin address.
   * 
-  * @param fromAccount The name of the account from which the bitcoins should be spent.
-  * @param toAddress A P2PKH or P2SH address to which the bitcoins should be sent
-  * @param amount The amount to spend in bitcoins.
+  * @param fromAccount The name of the account from which the syscoins should be spent.
+  * @param toAddress A P2PKH or P2SH address to which the syscoins should be sent
+  * @param amount The amount to spend in syscoins.
   * @param minConf The minimum number of confirmations an incoming transaction must have for its outputs to be credited to this account’s balance. 
   *  
   * @return The TXID of the sent transaction, encoded as hex in RPC byte order
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#sendfrom">sendfrom</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#sendfrom">sendfrom</a>
   */
  @Deprecated
  String sendFrom(String fromAccount, String toAddress, BigDecimal amount, int minConf) throws GenericRpcException;
 
  /**
-  * The sendfrom RPC spends an amount from a local account to a bitcoin address.
+  * The sendfrom RPC spends an amount from a local account to a syscoin address.
   * 
-  * @param fromAccount The name of the account from which the bitcoins should be spent.
-  * @param toAddress A P2PKH or P2SH address to which the bitcoins should be sent
-  * @param amount The amount to spend in bitcoins.
+  * @param fromAccount The name of the account from which the syscoins should be spent.
+  * @param toAddress A P2PKH or P2SH address to which the syscoins should be sent
+  * @param amount The amount to spend in syscoins.
   * @param minConf The minimum number of confirmations an incoming transaction must have for its outputs to be credited to this account’s balance. 
   * @param comment A locally-stored (not broadcast) comment assigned to this transaction.
   *  
   * @return The TXID of the sent transaction, encoded as hex in RPC byte order
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#sendfrom">sendfrom</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#sendfrom">sendfrom</a>
   */
  @Deprecated
  String sendFrom(String fromAccount, String toAddress, BigDecimal amount, int minConf, String comment) throws GenericRpcException;
 
  /**
-  * The sendfrom RPC spends an amount from a local account to a bitcoin address.
+  * The sendfrom RPC spends an amount from a local account to a syscoin address.
   * 
-  * @param fromAccount The name of the account from which the bitcoins should be spent.
-  * @param toAddress A P2PKH or P2SH address to which the bitcoins should be sent
-  * @param amount The amount to spend in bitcoins.
+  * @param fromAccount The name of the account from which the syscoins should be spent.
+  * @param toAddress A P2PKH or P2SH address to which the syscoins should be sent
+  * @param amount The amount to spend in syscoins.
   * @param minConf The minimum number of confirmations an incoming transaction must have for its outputs to be credited to this account’s balance. 
   * @param comment A locally-stored (not broadcast) comment assigned to this transaction.
   * @param commentTo A locally-stored (not broadcast) comment assigned to this transaction
   *  
   * @return The TXID of the sent transaction, encoded as hex in RPC byte order
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#sendfrom">sendfrom</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#sendfrom">sendfrom</a>
   */
  @Deprecated
  String sendFrom(String fromAccount, String toAddress, BigDecimal amount, int minConf, String comment, String commentTo) throws GenericRpcException;
@@ -1111,48 +1111,48 @@ public interface BitcoindRpcClient {
  /**
   * The sendtoaddress RPC spends an amount to a given address.
   * 
-  * @param toAddress A P2PKH or P2SH address to which the bitcoins should be sent
-  * @param amount The amount to spent in bitcoins
+  * @param toAddress A P2PKH or P2SH address to which the syscoins should be sent
+  * @param amount The amount to spent in syscoins
   * 
   * @return The TXID of the sent transaction, encoded as hex in RPC byte order
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#sendtoaddress">sendtoaddress</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#sendtoaddress">sendtoaddress</a>
   */
  String sendToAddress(String toAddress, BigDecimal amount) throws GenericRpcException;
 
  /**
   * The sendtoaddress RPC spends an amount to a given address.
   * 
-  * @param toAddress A P2PKH or P2SH address to which the bitcoins should be sent
-  * @param amount The amount to spent in bitcoins
+  * @param toAddress A P2PKH or P2SH address to which the syscoins should be sent
+  * @param amount The amount to spent in syscoins
   * @param comment A locally-stored (not broadcast) comment assigned to this transaction.
   * 
   * @return The TXID of the sent transaction, encoded as hex in RPC byte order
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#sendtoaddress">sendtoaddress</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#sendtoaddress">sendtoaddress</a>
   */
  String sendToAddress(String toAddress, BigDecimal amount, String comment) throws GenericRpcException;
 
  /**
   * The sendtoaddress RPC spends an amount to a given address.
   * 
-  * @param toAddress A P2PKH or P2SH address to which the bitcoins should be sent
-  * @param amount The amount to spent in bitcoins
+  * @param toAddress A P2PKH or P2SH address to which the syscoins should be sent
+  * @param amount The amount to spent in syscoins
   * @param comment A locally-stored (not broadcast) comment assigned to this transaction.
   * @param commentTo A locally-stored (not broadcast) comment assigned to this transaction
   * 
   * @return The TXID of the sent transaction, encoded as hex in RPC byte order
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#sendtoaddress">sendtoaddress</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#sendtoaddress">sendtoaddress</a>
   */
  String sendToAddress(String toAddress, BigDecimal amount, String comment, String commentTo) throws GenericRpcException;
 
  /**
   * The settxfee RPC sets the transaction fee per kilobyte paid by transactions created by this wallet.
   * 
-  * @param amount The transaction fee to pay, in bitcoins, for each kilobyte of transaction data.
+  * @param amount The transaction fee to pay, in syscoins, for each kilobyte of transaction data.
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#settxfee">settxfee</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#settxfee">settxfee</a>
   */
  boolean setTxFee(BigDecimal amount);
 
@@ -1164,7 +1164,7 @@ public interface BitcoindRpcClient {
   * 
   * @return The signature of the message, encoded in base64.
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#signmessage">signmessage</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#signmessage">signmessage</a>
   */
  String signMessage(String adress, String message);
 
@@ -1175,7 +1175,7 @@ public interface BitcoindRpcClient {
   * @param passPhrase The passphrase that unlocks the wallet
   * @param timeOut The number of seconds after which the decryption key will be automatically deleted from memory
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#walletpassphrase">walletpassphrase</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#walletpassphrase">walletpassphrase</a>
   */
  void walletPassPhrase(String passPhrase, long timeOut);
 
@@ -1193,7 +1193,7 @@ public interface BitcoindRpcClient {
   * @param nBlocks The maximum number of blocks a transaction should have to wait before it is predicted to be included in a block.
   * @return The estimated fee the transaction should pay in order to be included within the specified number of blocks.
   * 
-  * @see <a href="https://bitcoin.org/en/developer-reference#estimatefee">estimatefee</a>
+  * @see <a href="https://syscoin.org/en/developer-reference#estimatefee">estimatefee</a>
   */
  @Deprecated
  BigDecimal estimateFee(int nBlocks) throws GenericRpcException;
@@ -1209,7 +1209,7 @@ public interface BitcoindRpcClient {
 
  /**
   * the result returned by
-  * {@link BitcoinJSONRPCClient#getAddressBalance(String)}
+  * {@link SyscoinJSONRPCClient#getAddressBalance(String)}
   * 
   * @author frankchen
   */
@@ -1220,7 +1220,7 @@ public interface BitcoindRpcClient {
  }
 
  /**
-  * the result return by {@link BitcoinJSONRPCClient#getAddressUtxo(String)}
+  * the result return by {@link SyscoinJSONRPCClient#getAddressUtxo(String)}
   * @author frankchen
   */
  static interface AddressUtxo

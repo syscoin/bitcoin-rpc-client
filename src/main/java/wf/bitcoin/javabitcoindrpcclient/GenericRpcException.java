@@ -1,5 +1,5 @@
-/*
- * Bitcoin-JSON-RPC-Client License
+﻿/*
+ * Syscoin-JSON-RPC-Client License
  * 
  * Copyright (c) 2013, Mikhail Yevchenko.
  * 
@@ -16,7 +16,7 @@
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package wf.bitcoin.javabitcoindrpcclient;
+package wf.syscoin.javasyscoindrpcclient;
 
 /**
  *
@@ -27,14 +27,14 @@ public class GenericRpcException extends RuntimeException {
 
     /**
      * Creates a new instance of
-     * <code>BitcoinException</code> without detail message.
+     * <code>SyscoinException</code> without detail message.
      */
     public GenericRpcException() {
     }
 
     /**
      * Constructs an instance of
-     * <code>BitcoinException</code> with the specified detail message.
+     * <code>SyscoinException</code> with the specified detail message.
      *
      * @param msg the detail message.
      */

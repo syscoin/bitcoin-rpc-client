@@ -1,5 +1,5 @@
-/*
- * Bitcoin-JSON-RPC-Client License
+﻿/*
+ * Syscoin-JSON-RPC-Client License
  * 
  * Copyright (c) 2013, Mikhail Yevchenko.
  * 
@@ -16,13 +16,13 @@
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package wf.bitcoin.javabitcoindrpcclient;
+package wf.syscoin.javasyscoindrpcclient;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
 
-import wf.bitcoin.krotjson.HexCoder;
+import wf.syscoin.krotjson.HexCoder;
 
 /**
  *

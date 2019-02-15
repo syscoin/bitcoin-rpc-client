@@ -1,4 +1,4 @@
-### Changelog
+﻿### Changelog
 
 <%
 String processIssues(def milestone, def issues, String category) {
@@ -15,14 +15,14 @@ String processIssues(def milestone, def issues, String category) {
     }
 
     println ''
-    println "For details see [${milestone.title} ${category}s](https://github.com/Polve/bitcoin-rpc-client/issues?q=milestone%3A\"${milestoneTitle}\"+label%3A${category})"
+    println "For details see [${milestone.title} ${category}s](https://github.com/syscoin/syscoin-rpc-client/issues?q=milestone%3A\"${milestoneTitle}\"+label%3A${category})"
     return issueSummary
 }
 
 milestoneIssues.each { milestone, issues ->
     def milestoneSummary = ""
 
-    println "#### Bitcoin RPC Client ${milestone.title}"
+    println "#### Syscoin RPC Client ${milestone.title}"
 
     issueCategories.each {
     	if (issues[it] != null) {

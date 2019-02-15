@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   
-  <groupId>wf.bitcoin</groupId>
-  <artifactId>bitcoin-rpc-client</artifactId>
+  <groupId>wf.syscoin</groupId>
+  <artifactId>syscoin-rpc-client</artifactId>
   <packaging>jar</packaging>
   
   <version>1.1.1-SNAPSHOT</version>
   
-  <name>Java Bitcoind RPC Client</name>
-  <description>A lightweight Java bitcoin JSON-RPC client binding</description>
-  <url>https://github.com/Polve/bitcoin-rpc-client</url>
+  <name>Java Syscoind RPC Client</name>
+  <description>A lightweight Java syscoin JSON-RPC client binding</description>
+  <url>https://github.com/syscoin/syscoin-rpc-client</url>
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,7 +19,7 @@
     
     <!-- GitHub -->
     <github.namespace>Polve</github.namespace>
-    <github.project>bitcoin-rpc-client</github.project>
+    <github.project>syscoin-rpc-client</github.project>
   </properties>
     
   <licenses>    
@@ -68,9 +68,9 @@
   </dependencies>
 
   <scm>
-    <connection>scm:git:https://github.com/Polve/bitcoin-rpc-client</connection>
-    <developerConnection>scm:git:https://github.com/Polve/bitcoin-rpc-client.git</developerConnection>
-    <url>scm:git:https://github.com/Polve/bitcoin-rpc-client</url>
+    <connection>scm:git:https://github.com/syscoin/syscoin-rpc-client</connection>
+    <developerConnection>scm:git:https://github.com/syscoin/syscoin-rpc-client.git</developerConnection>
+    <url>scm:git:https://github.com/syscoin/syscoin-rpc-client</url>
   </scm>
 
   <distributionManagement>

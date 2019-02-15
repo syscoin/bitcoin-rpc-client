@@ -1,5 +1,5 @@
-/*
- * BitcoindRpcClient-JSON-RPC-Client License
+﻿/*
+ * SyscoindRpcClient-JSON-RPC-Client License
  * 
  * Copyright (c) 2013, Mikhail Yevchenko.
  * 
@@ -16,7 +16,7 @@
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package wf.bitcoin.javabitcoindrpcclient;
+package wf.syscoin.javasyscoindrpcclient;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -24,39 +24,39 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class BitcoinAcceptor implements Runnable {
+public class SyscoinAcceptor implements Runnable {
     
-    private static final Logger logger = Logger.getLogger(BitcoinAcceptor.class.getCanonicalName());
+    private static final Logger logger = Logger.getLogger(SyscoinAcceptor.class.getCanonicalName());
 
-    public final BitcoindRpcClient bitcoin;
+    public final SyscoindRpcClient syscoin;
     private String lastBlock, monitorBlock = null;
     int monitorDepth;
-    private final LinkedHashSet<BitcoinPaymentListener> listeners = new LinkedHashSet<BitcoinPaymentListener>();
+    private final LinkedHashSet<SyscoinPaymentListener> listeners = new LinkedHashSet<SyscoinPaymentListener>();
 
-    public BitcoinAcceptor(BitcoindRpcClient bitcoin, String lastBlock, int monitorDepth) {
-        this.bitcoin = bitcoin;
+    public SyscoinAcceptor(SyscoindRpcClient syscoin, String lastBlock, int monitorDepth) {
+        this.syscoin = syscoin;
         this.lastBlock = lastBlock;
         this.monitorDepth = monitorDepth;
     }
     
-    public BitcoinAcceptor(BitcoindRpcClient bitcoin) {
-        this(bitcoin, null, 6);
+    public SyscoinAcceptor(SyscoindRpcClient syscoin) {
+        this(syscoin, null, 6);
     }
 
-    public BitcoinAcceptor(BitcoindRpcClient bitcoin, String lastBlock, int monitorDepth, BitcoinPaymentListener listener) {
-        this(bitcoin, lastBlock, monitorDepth);
+    public SyscoinAcceptor(SyscoindRpcClient syscoin, String lastBlock, int monitorDepth, SyscoinPaymentListener listener) {
+        this(syscoin, lastBlock, monitorDepth);
         listeners.add(listener);
     }
 
-    public BitcoinAcceptor(BitcoindRpcClient bitcoin, BitcoinPaymentListener listener) {
-        this(bitcoin, null, 12);
+    public SyscoinAcceptor(SyscoindRpcClient syscoin, SyscoinPaymentListener listener) {
+        this(syscoin, null, 12);
         listeners.add(listener);
     }
 
     public String getAccountAddress(String account) throws GenericRpcException {
-        List<String> a = bitcoin.getAddressesByAccount(account);
+        List<String> a = syscoin.getAddressesByAccount(account);
         if (a.isEmpty())
-            return bitcoin.getNewAddress(account);
+            return syscoin.getNewAddress(account);
         return a.get(0);
     }
 
@@ -71,15 +71,15 @@ public class BitcoinAcceptor implements Runnable {
         updateMonitorBlock();
     }
 
-    public synchronized BitcoinPaymentListener[] getListeners() {
-        return listeners.toArray(new BitcoinPaymentListener[0]);
+    public synchronized SyscoinPaymentListener[] getListeners() {
+        return listeners.toArray(new SyscoinPaymentListener[0]);
     }
 
-    public synchronized void addListener(BitcoinPaymentListener listener) {
+    public synchronized void addListener(SyscoinPaymentListener listener) {
         listeners.add(listener);
     }
 
-    public synchronized void removeListener(BitcoinPaymentListener listener) {
+    public synchronized void removeListener(SyscoinPaymentListener listener) {
         listeners.remove(listener);
     }
 
@@ -88,18 +88,18 @@ public class BitcoinAcceptor implements Runnable {
     private void updateMonitorBlock() throws GenericRpcException {
         monitorBlock = lastBlock;
         for(int i = 0; i < monitorDepth && monitorBlock != null; i++) {
-            BitcoindRpcClient.Block b = bitcoin.getBlock(monitorBlock);
+            SyscoindRpcClient.Block b = syscoin.getBlock(monitorBlock);
             monitorBlock = b == null ? null : b.previousHash();
         }
     }
 
     public synchronized void checkPayments() throws GenericRpcException {
-        BitcoindRpcClient.TransactionsSinceBlock t = monitorBlock == null ? bitcoin.listSinceBlock() : bitcoin.listSinceBlock(monitorBlock);
-        for (BitcoindRpcClient.Transaction transaction : t.transactions()) {
+        SyscoindRpcClient.TransactionsSinceBlock t = monitorBlock == null ? syscoin.listSinceBlock() : syscoin.listSinceBlock(monitorBlock);
+        for (SyscoindRpcClient.Transaction transaction : t.transactions()) {
             if ("receive".equals(transaction.category())) {
                 if (!seen.add(transaction.txId()))
                     continue;
-                for (BitcoinPaymentListener listener : listeners) {
+                for (SyscoinPaymentListener listener : listeners) {
                     try {
                         listener.transaction(transaction);
                     } catch (Exception ex) {
@@ -112,7 +112,7 @@ public class BitcoinAcceptor implements Runnable {
             seen.clear();
             lastBlock = t.lastBlock();
             updateMonitorBlock();
-            for (BitcoinPaymentListener listener : listeners) {
+            for (SyscoinPaymentListener listener : listeners) {
                 try {
                     listener.block(lastBlock);
                 } catch (Exception ex) {
@@ -158,26 +158,26 @@ public class BitcoinAcceptor implements Runnable {
                     nextCheck = System.currentTimeMillis() + checkInterval;
                     checkPayments();
                 } catch (GenericRpcException ex) {
-                    Logger.getLogger(BitcoinAcceptor.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SyscoinAcceptor.class.getName()).log(Level.SEVERE, null, ex);
                 }
             else
                 try {
                     Thread.sleep(Math.max(nextCheck - System.currentTimeMillis(), 100));
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(BitcoinAcceptor.class.getName()).log(Level.WARNING, null, ex);
+                    Logger.getLogger(SyscoinAcceptor.class.getName()).log(Level.WARNING, null, ex);
                 }
         }
     }
 
 //    public static void main(String[] args) {
 //        //System.out.println(System.getProperties().toString().replace(", ", ",\n"));
-//        final BitcoindRpcClient bitcoin = new BitcoinJSONRPCClient(true);
-//        new BitcoinAcceptor(bitcoin, null, 6, new BitcoinPaymentListener() {
+//        final SyscoindRpcClient syscoin = new SyscoinJSONRPCClient(true);
+//        new SyscoinAcceptor(syscoin, null, 6, new SyscoinPaymentListener() {
 //
 //            public void block(String blockHash) {
 //                try {
-//                    System.out.println("new block: " + blockHash + "; date: " + bitcoin.getBlock(blockHash).time());
-//                } catch (BitcoinRpcException ex) {
+//                    System.out.println("new block: " + blockHash + "; date: " + syscoin.getBlock(blockHash).time());
+//                } catch (SyscoinRpcException ex) {
 //                    logger.log(Level.SEVERE, null, ex);
 //                }
 //            }

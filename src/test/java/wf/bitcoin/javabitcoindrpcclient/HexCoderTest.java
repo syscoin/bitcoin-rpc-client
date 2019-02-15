@@ -1,9 +1,9 @@
-package wf.bitcoin.javabitcoindrpcclient;
+﻿package wf.syscoin.javasyscoindrpcclient;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import wf.bitcoin.krotjson.HexCoder;
+import wf.syscoin.krotjson.HexCoder;
 
 public class HexCoderTest {
 
